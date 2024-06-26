@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fontawesome/css/all.css"> 
+</head>
+
+<body>
+    <div class="container">
+      <div class="form-box">
+        <h1 id="title">Sign Up</h1>
+        <form action="" id="registerForm">
+            <div class="input-group">
+                <div class="input-field" id="nameField">
+                    <i class="fa-solid fa-user"></i>   
+                    <input type="email" placeholder="Email" id="" onkeyup="white(this.value)">
+                    <div class="clear"></div>
+                </div>
+                <div class="input-field">
+                    <i class="fa-solid fa-lock"></i>    
+                    <input type="password" placeholder="password" id="password">
+                </div>
+                <div class="input-field">
+                    <i class="fa-solid fa-lock"></i>    
+                    <input type="password" placeholder="Confirm password" id="confirm_password" onkeyup="check(this)">
+                </div>
+                <error id="alert"></error>
+            </div>
+            <div class="btn-field">
+                <error id="alert1"></error>
+                <error id="alert-caps"></error>
+                <button type="submit">Sign up</button>
+            </div>
+            <p id="pass">Already have an account?<a href="index.html">Login</a></p>
+        </form>
+      </div>
+    </div>
+</body>
+<script type="text/javascript">
+    var password = document.getElementById('password');
+    var flag=1;
+    function check(elem) {
+        if (elem.value.length > 0) {
+            if (elem.value != password.value) {
+                document.getElementById('alert').innerText = "Password does not match";
+                flag = 0;
+            } else {
+                document.getElementById('alert').innerText = "";
+                flag = 1;
+            }
+        } else {
+            document.getElementById('alert').innerText = "Please Enter Password";
+            flag = 0;
+        }
+        function validate() {
+            if (flag == 1) {
+                return ture;
+            }
+            else {
+                return false;
+            }
+        }
+    }
+
+    window.addEventListener('keyup', event => {
+        var iscaps = event.getModifierState('CapsLock');
+        if (iscaps) {
+            document.getElementById('alert1').innerText = "WARNING! Capslock is on";
+        } else {
+            document.getElementById('alert1').innerText = "";
+        }
+    })
+
+    var pattern = /\s/g;
+    var alert = document.getElementById('alert-caps');
+    function white(data) {
+        var isSpace = pattern.test(data);
+        if (isSpace) {
+            alert.innerText = "Space is not allowed";
+        } else {
+            alert.innerText = "";
+        }
+    }
+</script>
+</html> 
